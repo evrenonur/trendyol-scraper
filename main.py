@@ -2,8 +2,12 @@ import requests
 import openpyxl
 
 query = input('çekilecek adresi giriniz: ')
+page_count = int(input('kaç sayfa çekilecek: '))
+if page_count > 200:
+    print('200 sayfadan fazla çekilemez.')
+    exit()
 all_products = []
-for i in range(1, 204):
+for i in range(1, page_count):
     print('Sayfa: ' + str(i))
     response = requests.get('https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/' + query+ '&pi=' + str(i))
     if response.status_code == 200:
